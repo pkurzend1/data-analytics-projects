@@ -1,2 +1,15 @@
 # gitignore
+
+
+### General ###
+*.log
+*.pyc
+__pycache__/
+
+### Environments ###
+.vscode
+
+
+# data
 data
+

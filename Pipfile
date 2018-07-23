@@ -7,6 +7,9 @@ name = "pypi"
 tensorflow = "*"
 "h5py" = "*"
 keras = "*"
+pandas = "*"
+scikit-learn = "*"
+numpy = "*"
 
 [dev-packages]
 
