@@ -64,14 +64,15 @@ class PSO():
         self.t = 0                         # time stamp, := iteration step
         self.gbest = {'position': None, 'cost': np.inf} # init global best
         
+        
 
 
     def optimize(self):
         # extract Problem Info:
-        costFunction = problem.costFunction
-        varMin = problem.varMin
-        varMax = problem.varMax
-        nVar = problem.nVar
+        costFunction = self.problem.costFunction
+        varMin = self.problem.varMin
+        varMax = self.problem.varMax
+        nVar = self.problem.nVar
 
         # init population
         pop = []
