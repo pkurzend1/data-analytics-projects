@@ -4,6 +4,7 @@ import csv
 import numpy as np
 
 data = "../data/sportsbetting/tennis_sample.csv"
+parsed_data = "../data/sportsbetting/parsed_data.csv"
 
 X = []
 
@@ -136,6 +137,15 @@ def parse(s):
 
 
 
+def dictsToCSV(dicts2csv, filepath=parsed_data): 
+    keys = dicts2csv[0].keys()
+    with open(filepath, 'a', newline='') as f:  
+        dict_writer = csv.DictWriter(f, keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(dicts2csv)
+
+
+
 
 with open(data) as f:
 
@@ -167,7 +177,7 @@ with open(data) as f:
         print(row_dict)
         X.append(row_dict)
 
-
+dictsToCSV(X)
 
 
 
