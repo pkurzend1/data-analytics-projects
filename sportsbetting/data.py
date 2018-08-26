@@ -33,7 +33,7 @@ def myFloat(sth):
 
 def parse(s):
     stats = s.split(",")
-
+    
     
     if len(stats) == 1 and stats[0] == "":
         stats_dict = {
@@ -115,19 +115,19 @@ def parse(s):
             "na1" : str(stats[9].split(":")[1]),
             "na2" : str(stats[9].split(":")[2]), 
 
-            "tpw1" : myInt(stats[6].split(":")[1]),
-            "tpw2" : myInt(stats[6].split(":")[2]), 
+            "tpw1" : myInt(stats[10].split(":")[1]),
+            "tpw2" : myInt(stats[10].split(":")[2]), 
 
-            "fastest_serve1" : str(stats[10].split(":")[1]),
-            "fastest_serve2" : str(stats[10].split(":")[2]), 
+            "fastest_serve1" : str(stats[11].split(":")[1]),
+            "fastest_serve2" : str(stats[11].split(":")[2]), 
 
-            "avg_1st_serve_speed1" : str(stats[11].split(":")[1]),
-            "avg_1st_serve_speed2" : str(stats[11].split(":")[2]), 
+            "avg_1st_serve_speed1" : str(stats[12].split(":")[1]),
+            "avg_1st_serve_speed2" : str(stats[12].split(":")[2]), 
 
-            "avg_2nd_serve_speed1" : str(stats[12].split(":")[1]),
-            "avg_2nd_serve_speed2" : str(stats[12].split(":")[2]), 
+            "avg_2nd_serve_speed1" : str(stats[13].split(":")[1]),
+            "avg_2nd_serve_speed2" : str(stats[13].split(":")[2]), 
 
-            "time" : str(":".join(stats[13].strip().split(":")[1:]))
+            "time" : str(".".join(stats[14].strip().split(":")[1:])).strip()
 
         }
 
@@ -139,7 +139,7 @@ def parse(s):
 
 def dictsToCSV(dicts2csv, filepath=parsed_data): 
     keys = dicts2csv[0].keys()
-    with open(filepath, 'a', newline='') as f:  
+    with open(filepath, 'w') as f:  
         dict_writer = csv.DictWriter(f, keys)
         dict_writer.writeheader()
         dict_writer.writerows(dicts2csv)
@@ -151,7 +151,7 @@ with open(data) as f:
 
     reader = csv.reader(f)
     for row in reader:
-        print(len(row))
+        
         if "K1" in row:
             continue
         row_dict = {
