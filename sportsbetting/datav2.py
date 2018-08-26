@@ -128,7 +128,7 @@ def parse(s):
             "avg_2nd_serve_speed1" : str(stats[12].split(":")[1]),
             "avg_2nd_serve_speed2" : str(stats[12].split(":")[2]), 
 
-            "time" : str(":".join(stats[13].strip().split(":")[1:]))
+            "time" : str(":".join(stats[14].strip().split(":")[1:]))
 
         }
 
