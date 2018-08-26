@@ -116,17 +116,17 @@ def parse(s):
             "na1" : str(stats[9].split(":")[1]),
             "na2" : str(stats[9].split(":")[2]), 
 
-            "tpw1" : myInt(stats[6].split(":")[1]),
-            "tpw2" : myInt(stats[6].split(":")[2]), 
+            "tpw1" : myInt(stats[10].split(":")[1]),
+            "tpw2" : myInt(stats[10].split(":")[2]), 
 
-            "fastest_serve1" : str(stats[10].split(":")[1]),
-            "fastest_serve2" : str(stats[10].split(":")[2]), 
+            "fastest_serve1" : str(stats[11].split(":")[1]),
+            "fastest_serve2" : str(stats[11].split(":")[2]), 
 
-            "avg_1st_serve_speed1" : str(stats[11].split(":")[1]),
-            "avg_1st_serve_speed2" : str(stats[11].split(":")[2]), 
+            "avg_1st_serve_speed1" : str(stats[12].split(":")[1]),
+            "avg_1st_serve_speed2" : str(stats[12].split(":")[2]), 
 
-            "avg_2nd_serve_speed1" : str(stats[12].split(":")[1]),
-            "avg_2nd_serve_speed2" : str(stats[12].split(":")[2]), 
+            "avg_2nd_serve_speed1" : str(stats[13].split(":")[1]),
+            "avg_2nd_serve_speed2" : str(stats[13].split(":")[2]), 
 
             "time" : str(":".join(stats[14].strip().split(":")[1:]))
 
