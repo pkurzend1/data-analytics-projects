@@ -95,27 +95,38 @@ def parse(s):
             "unforced_errors1" : myInt(stats[2].split(":")[1]),
             "unforced_errors2" : myInt(stats[2].split(":")[2]),
 
-            "1st_serve1" : str(stats[3].split(":")[1]),
-            "1st_serve2" : str(stats[3].split(":")[2]), 
+            "1st_serve1" :     str(stats[3].split(":")[1]).strip()[:-1].split("[")[0],
+            "1st_serve1_max" : str(stats[3].split(":")[1]).strip()[:-1].split("[")[1],
+            "1st_serve2" :     str(stats[3].split(":")[2]).strip()[:-1].split("[")[0],
+            "1st_serve2_max" : str(stats[3].split(":")[2]).strip()[:-1].split("[")[1],
 
-            "win_on_1st_serve1" : str(stats[4].split(":")[1]),
-            "win_on_1st_serve2" : str(stats[4].split(":")[2]), 
+            "win_on_1st_serve1" : str(stats[4].split(":")[1]).strip()[:-1].split("[")[0],
+            "win_on_1st_serve1_max" : str(stats[4].split(":")[1]).strip()[:-1].split("[")[1],
+            "win_on_1st_serve2" : str(stats[4].split(":")[2]).strip()[:-1].split("[")[0],
+            "win_on_1st_serve2_max" : str(stats[4].split(":")[2]).strip()[:-1].split("[")[1],
 
-            "win_on_2nd_serve1" : str(stats[5].split(":")[1]),
-            "win_on_2nd_serve2" : str(stats[5].split(":")[2]),       
+            "win_on_2nd_serve1" :     str(stats[5].split(":")[1]).strip()[:-1].split("[")[0],
+            "win_on_2nd_serve1_max" : str(stats[5].split(":")[1]).strip()[:-1].split("[")[1],
+            "win_on_2nd_serve2" :     str(stats[5].split(":")[2]).strip()[:-1].split("[")[0],    
+            "win_on_2nd_serve2_max" : str(stats[5].split(":")[2]).strip()[:-1].split("[")[1],    
 
-            "receiving_points_won1" : str(stats[6].split(":")[1]),
-            "receiving_points_won2" : str(stats[6].split(":")[2]),  
-
+            "receiving_points_won1" :     str(stats[6].split(":")[1]).strip()[:-1].split("[")[0],
+            "receiving_points_won1_max" : str(stats[6].split(":")[1]).strip()[:-1].split("[")[1],
+            "receiving_points_won2" :     str(stats[6].split(":")[2]).strip()[:-1].split("[")[0],
+            "receiving_points_won2_max" : str(stats[6].split(":")[2]).strip()[:-1].split("[")[1],
+            
+            
             "winners1" : myInt(stats[7].split(":")[1]),
             "winners2" : myInt(stats[7].split(":")[2]), 
 
             "bp_conversions1" : myInt(stats[8].split(":")[1]),
             "bp_conversions2" : myInt(stats[8].split(":")[2]), 
-
-            "na1" : str(stats[9].split(":")[1]),
-            "na2" : str(stats[9].split(":")[2]), 
-
+            
+            "na1" :     str(stats[9].split(":")[1]).strip()[:-1].split("[")[0],
+            "na1_max" : str(stats[9].split(":")[1]).strip()[:-1].split("[")[1],
+            "na2" :     str(stats[9].split(":")[2]).strip()[:-1].split("[")[0],
+            "na2_max" : str(stats[9].split(":")[2]).strip()[:-1].split("[")[1],
+            
             "tpw1" : myInt(stats[10].split(":")[1]),
             "tpw2" : myInt(stats[10].split(":")[2]), 
 
@@ -131,7 +142,7 @@ def parse(s):
             "time" : str(":".join(stats[14].strip().split(":")[1:]))
 
         }
-
+ 
     return stats_dict
 
 
@@ -143,7 +154,7 @@ with open(data) as f:
 
     reader = csv.reader(f)
     for row in reader:
-        print(len(row))
+#        print(len(row))
         if "K1" in row:
             continue
         row_dict = {
@@ -166,10 +177,10 @@ with open(data) as f:
         stats_dict = parse(container)
         row_dict = {**row_dict, **stats_dict}
 
-        print(row_dict)
+#        print(row_dict)
         X.append(row_dict)
 
-df = pd.DataFrame(X)
+df = pd.DataFrame(X, columns = X[0].keys(), dtype=object)
 
 df.to_csv("../data/clean/data.csv")
 
