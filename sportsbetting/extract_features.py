@@ -5,7 +5,7 @@ Created on Thu Aug 30 12:18:46 2018
 
 @author: Philipp Kurzendorfer, Friedemann Schestag
 """
-import numpy as np
+
 import pandas as pd
 
 parsed_data_path = '../sportsbetting/data/clean/clean_sample.csv'
