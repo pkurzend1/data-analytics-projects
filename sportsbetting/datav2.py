@@ -100,9 +100,9 @@ def parse(s):
             "1st_serve2" :     str(stats[3].split(":")[2]).strip()[:-1].split("[")[0],
             "1st_serve2_max" : str(stats[3].split(":")[2]).strip()[:-1].split("[")[1],
 
-            "win_on_1st_serve1" : str(stats[4].split(":")[1]).strip()[:-1].split("[")[0],
+            "win_on_1st_serve1" :     str(stats[4].split(":")[1]).strip()[:-1].split("[")[0],
             "win_on_1st_serve1_max" : str(stats[4].split(":")[1]).strip()[:-1].split("[")[1],
-            "win_on_1st_serve2" : str(stats[4].split(":")[2]).strip()[:-1].split("[")[0],
+            "win_on_1st_serve2" :     str(stats[4].split(":")[2]).strip()[:-1].split("[")[0],
             "win_on_1st_serve2_max" : str(stats[4].split(":")[2]).strip()[:-1].split("[")[1],
 
             "win_on_2nd_serve1" :     str(stats[5].split(":")[1]).strip()[:-1].split("[")[0],
@@ -139,8 +139,8 @@ def parse(s):
             "avg_2nd_serve_speed1" : str(stats[13].split(":")[1]),
             "avg_2nd_serve_speed2" : str(stats[13].split(":")[2]), 
 
-            "time" : str(":".join(stats[14].strip().split(":")[1:]))
-
+            "match_duration" : sum(np.array(list(map(int, stats[14].strip().split(":")[1:])))*
+                                   np.array([3600, 60, 1])),
         }
  
     return stats_dict
@@ -159,9 +159,10 @@ with open(data) as f:
             continue
         row_dict = {
             "player1" : str(row[0]),
+#            In Klammern hinter den Spielernamen ist die jeweilige Position in der Turnier-Setzliste angegeben. Q steht für Qualifikant, WC für Wildcard, LL für Lucky Loser, SE für Special Exempt, ALT für Alternate und PR für Protected Ranking. [Definition]
             "player2" : str(row[1]),
             "tournament" : str(row[2]),
-            "data" : str(row[3]),
+            "date" : str(row[3]),
             "round" : str(row[4]),
             "surface" : str(row[5]),
             "result" : str(row[6]),
@@ -182,7 +183,7 @@ with open(data) as f:
 
 df = pd.DataFrame(X, columns = X[0].keys(), dtype=object)
 
-df.to_csv("../data/clean/data.csv")
+df.to_csv("../data/clean/data.csv", index=None)
 
 
 
