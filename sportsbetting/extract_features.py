@@ -13,6 +13,9 @@ feature_path = '../sportsbetting/data/features/feature_sample.csv'
 
 df = pd.read_csv(parsed_data_path)
 
+# We exploit the fact that in pandas a dataframe.column element divided by 0
+# results in NaN. This way we don't have to handle this case manually
+
 # comment saying what gets calculated here 
 df.loc[:, '__1st_serve1'] = df.loc[:, 'FirstIn1']/df.loc[:, 'ServedPoints1']
 df.loc[:, '__1st_serve2'] = df.loc[:, 'FirstIn2']/df.loc[:, 'ServedPoints2']
